@@ -1,0 +1,17 @@
+^renv$
+^renv\.lock$
+^README\.Rmd$
+^RcppGLM\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
+^.*\.Rproj$
+^\.Rproj\.user$
+^README\.Rmd$
+^cran-comments\.md$
+^\.travis\.yml$
+^data-raw$
+^pkgdown$
+^_pkgdown\.yml$
+^\.github$
+^.vscode$
+^.Rprofile$

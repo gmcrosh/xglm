@@ -1,0 +1,10 @@
+.Rproj.user
+.Rhistory
+.RData
+renv
+renv.lock
+personal
+.vscode
+.Rprofile
+man
+tests
