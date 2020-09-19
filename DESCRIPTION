@@ -8,6 +8,9 @@ Maintainer@R: person("Graham", "Crosh", role = c("aut", "cre"))
 Description: Fit GLMs fast with c++
 License: NA
 Imports: Rcpp (>= 1.0.5)
-LinkingTo: Rcpp, RcppArmadillo
+LinkingTo: 
+  Rcpp, 
+  RcppArmadillo
 Suggests: testthat, GLMsData
 RoxygenNote: 7.1.1
+Encoding: UTF-8

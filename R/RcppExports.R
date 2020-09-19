@@ -17,7 +17,7 @@ rcpp_make_gamma <- function(link) {
     .Call(`_xglm_rcpp_make_gamma`, link)
 }
 
-rcpp_glm_fit <- function(x, y, family, maxit, tol) {
-    .Call(`_xglm_rcpp_glm_fit`, x, y, family, maxit, tol)
+rcpp_glm_fit <- function(x, y, weights, offset, family, maxit, tol) {
+    .Call(`_xglm_rcpp_glm_fit`, x, y, weights, offset, family, maxit, tol)
 }
 

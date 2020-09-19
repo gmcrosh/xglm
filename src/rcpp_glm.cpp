@@ -4,7 +4,6 @@
 #include "glm.h"
 
 // [[Rcpp::depends(RcppArmadillo)]]
-
 std::unique_ptr<Link::LinkFunction> link_from_string(const std::string& link_name) {
   if (link_name == "logit") {
     std::unique_ptr<Link::LinkFunction> ptr(new Link::Logit());
@@ -58,7 +57,8 @@ Rcpp::XPtr<Family::Gamma> rcpp_make_gamma(std::string link) {
 
 // [[Rcpp::export]]
 arma::mat rcpp_glm_fit(const arma::mat& x, const arma::colvec& y,
+                  const arma::colvec& weights, const arma::colvec& offset,
                   Rcpp::XPtr<Family::ExponentialFamily> family,
                   int maxit, double tol) {
-  return glm_fit(x, y, *family, maxit, tol);
+  return glm_fit(x, y, weights, offset, *family, maxit, tol);
 }
