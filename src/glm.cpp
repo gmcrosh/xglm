@@ -1,11 +1,11 @@
 #include "glm.h"
 
-arma::mat glm_fit(const arma::mat& x, 
+arma::mat glm_fit(const arma::mat& x,
                   const arma::colvec& y,
-                  const arma::colvec& weights,
+                  const arma::colvec& sample_weights,
                   const arma::colvec& offset,
                   const Family::ExponentialFamily& family,
-                  int maxit, 
+                  int maxit,
                   double tol) {
   const int n_cols = x.n_cols;
   arma::mat Q, R;
@@ -18,7 +18,7 @@ arma::mat glm_fit(const arma::mat& x,
     const arma::colvec mu = family.link_inverse(eta);
     const arma::colvec mu_p = family.link_mu_eta(eta);
     const arma::colvec z = (eta - offset) + (y - mu) / mu_p;
-    const arma::colvec W = (weights % arma::square(mu_p)) / family.variance(mu);
+    const arma::colvec W = (sample_weights % arma::square(mu_p)) / family.variance(mu);
     const arma::mat C = arma::chol(Q.t() * (Q.each_col() % W));
     const arma::colvec s1 = arma::solve(arma::trimatl(C.t()), Q.t() * (W % z));
     s = arma::solve(arma::trimatu(C), s1);

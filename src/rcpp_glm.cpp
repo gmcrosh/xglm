@@ -57,8 +57,8 @@ Rcpp::XPtr<Family::Gamma> rcpp_make_gamma(std::string link) {
 
 // [[Rcpp::export]]
 arma::mat rcpp_glm_fit(const arma::mat& x, const arma::colvec& y,
-                  const arma::colvec& weights, const arma::colvec& offset,
+                  const arma::colvec& sample_weights, const arma::colvec& offset,
                   Rcpp::XPtr<Family::ExponentialFamily> family,
                   int maxit, double tol) {
-  return glm_fit(x, y, weights, offset, *family, maxit, tol);
+  return glm_fit(x, y, sample_weights, offset, *family, maxit, tol);
 }

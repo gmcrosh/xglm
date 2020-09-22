@@ -14,7 +14,8 @@ arma::colvec Binomial::variance(const arma::colvec& mu) const {
   return mu % (1.0 - mu);
 }
 arma::colvec Binomial::initialize(const arma::colvec& y) const {
-  return (y + 0.5)/(1);
+  return (y + 0.5)/(2);
+  // Need to update to (y * weight + .5) / (1 + weight)
 }
 
 arma::colvec Poisson::variance(const arma::colvec& mu) const {

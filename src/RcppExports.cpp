@@ -52,19 +52,19 @@ BEGIN_RCPP
 END_RCPP
 }
 // rcpp_glm_fit
-arma::mat rcpp_glm_fit(const arma::mat& x, const arma::colvec& y, const arma::colvec& weights, const arma::colvec& offset, Rcpp::XPtr<Family::ExponentialFamily> family, int maxit, double tol);
-RcppExport SEXP _xglm_rcpp_glm_fit(SEXP xSEXP, SEXP ySEXP, SEXP weightsSEXP, SEXP offsetSEXP, SEXP familySEXP, SEXP maxitSEXP, SEXP tolSEXP) {
+arma::mat rcpp_glm_fit(const arma::mat& x, const arma::colvec& y, const arma::colvec& sample_weights, const arma::colvec& offset, Rcpp::XPtr<Family::ExponentialFamily> family, int maxit, double tol);
+RcppExport SEXP _xglm_rcpp_glm_fit(SEXP xSEXP, SEXP ySEXP, SEXP sample_weightsSEXP, SEXP offsetSEXP, SEXP familySEXP, SEXP maxitSEXP, SEXP tolSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const arma::mat& >::type x(xSEXP);
     Rcpp::traits::input_parameter< const arma::colvec& >::type y(ySEXP);
-    Rcpp::traits::input_parameter< const arma::colvec& >::type weights(weightsSEXP);
+    Rcpp::traits::input_parameter< const arma::colvec& >::type sample_weights(sample_weightsSEXP);
     Rcpp::traits::input_parameter< const arma::colvec& >::type offset(offsetSEXP);
     Rcpp::traits::input_parameter< Rcpp::XPtr<Family::ExponentialFamily> >::type family(familySEXP);
     Rcpp::traits::input_parameter< int >::type maxit(maxitSEXP);
     Rcpp::traits::input_parameter< double >::type tol(tolSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_glm_fit(x, y, weights, offset, family, maxit, tol));
+    rcpp_result_gen = Rcpp::wrap(rcpp_glm_fit(x, y, sample_weights, offset, family, maxit, tol));
     return rcpp_result_gen;
 END_RCPP
 }

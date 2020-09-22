@@ -4,12 +4,12 @@
 #include "family.h"
 #include "linkfunctions.h"
 
-arma::mat glm_fit(const arma::mat& x, 
+arma::mat glm_fit(const arma::mat& x,
                   const arma::colvec& y,
-                  const arma::colvec& weights,
+                  const arma::colvec& sample_weights,
                   const arma::colvec& offset,
                   const Family::ExponentialFamily& family,
-                  int maxit, 
+                  int maxit,
                   double tol);
 
 #endif
