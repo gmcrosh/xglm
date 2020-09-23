@@ -19,7 +19,7 @@ public:
     return link_function->mu_eta(eta);
   }
   virtual arma::colvec variance(const arma::colvec& mu) const = 0;
-  virtual arma::colvec initialize(const arma::colvec& y) const = 0;
+  virtual arma::colvec initialize(const arma::colvec& y, const arma::colvec& weight) const = 0;
   ExponentialFamily(std::unique_ptr<Link::LinkFunction>& link) : link_function(std::move(link)) {
   }
   virtual ~ExponentialFamily() {}
@@ -30,28 +30,28 @@ private:
 class Gaussian : public ExponentialFamily {
 public:
   arma::colvec variance(const arma::colvec& mu) const;
-  arma::colvec initialize(const arma::colvec& y) const;
+  arma::colvec initialize(const arma::colvec& y, const arma::colvec& weight) const;
   Gaussian(std::unique_ptr<Link::LinkFunction>& link) : ExponentialFamily(link) {}
 };
 
 class Binomial : public ExponentialFamily {
 public:
   arma::colvec variance(const arma::colvec& mu) const;
-  arma::colvec initialize(const arma::colvec& y) const;
+  arma::colvec initialize(const arma::colvec& y, const arma::colvec& weight) const;
   Binomial(std::unique_ptr<Link::LinkFunction>& link) : ExponentialFamily(link) {}
 };
 
 class Poisson : public ExponentialFamily {
 public:
   arma::colvec variance(const arma::colvec& mu) const;
-  arma::colvec initialize(const arma::colvec& y) const;
+  arma::colvec initialize(const arma::colvec& y, const arma::colvec& weight) const;
   Poisson(std::unique_ptr<Link::LinkFunction>& link) : ExponentialFamily(link) {}
 };
 
 class Gamma : public ExponentialFamily {
 public:
   arma::colvec variance(const arma::colvec& mu) const;
-  arma::colvec initialize(const arma::colvec& y) const;
+  arma::colvec initialize(const arma::colvec& y, const arma::colvec& weight) const;
   Gamma(std::unique_ptr<Link::LinkFunction>& link) : ExponentialFamily(link) {}
 };
 

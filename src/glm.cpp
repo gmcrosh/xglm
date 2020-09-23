@@ -11,7 +11,7 @@ arma::mat glm_fit(const arma::mat& x,
   arma::mat Q, R;
   arma::colvec s = arma::zeros<arma::colvec>(n_cols);
   arma::colvec s_old;
-  arma::colvec eta = family.link_fun(family.initialize(y));
+  arma::colvec eta = family.link_fun(family.initialize(y, sample_weights));
   arma::qr_econ(Q, R, x);
   for (int i = 0; i < maxit; i++) {
     s_old = s;
