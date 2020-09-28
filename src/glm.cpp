@@ -13,6 +13,7 @@ arma::mat glm_fit(const arma::mat& x,
   arma::colvec s_old;
   arma::colvec eta = family.link_fun(family.initialize(y, sample_weights));
   arma::qr_econ(Q, R, x);
+  double dev, devold;
   for (int i = 0; i < maxit; i++) {
     s_old = s;
     const arma::colvec mu = family.link_inverse(eta);
@@ -23,8 +24,9 @@ arma::mat glm_fit(const arma::mat& x,
     const arma::colvec s1 = arma::solve(arma::trimatl(C.t()), Q.t() * (W % z));
     s = arma::solve(arma::trimatu(C), s1);
     eta = Q * s + offset;
-
-    const bool is_converged = std::sqrt(arma::accu(arma::square(s - s_old))) < tol;
+    devold = dev;
+    dev = family.deviance(y, mu, sample_weights);
+    const bool is_converged = (std::abs(dev - devold) / (0.1 + std::abs(dev)) < tol);
     if (is_converged) break;
   }
   return arma::solve(arma::trimatu(R), Q.t() * (eta - offset));
