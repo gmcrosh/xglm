@@ -26,8 +26,11 @@ arma::mat glm_fit(const arma::mat& x,
     eta = Q * s + offset;
     devold = dev;
     dev = family.deviance(y, mu, sample_weights);
-    const bool is_converged = (std::abs(dev - devold) / (0.1 + std::abs(dev)) < tol);
-    if (is_converged) break;
+    if (i > 0) {
+      const bool is_converged = (std::abs(dev - devold) / (0.1 + std::abs(dev)) < tol);
+      //Rcpp::Rcout << dev << std::endl;
+      if (is_converged) break;
+    }
   }
   return arma::solve(arma::trimatu(R), Q.t() * (eta - offset));
 }
