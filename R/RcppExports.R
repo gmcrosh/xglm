@@ -17,6 +17,10 @@ rcpp_make_gamma <- function(link) {
     .Call(`_xglm_rcpp_make_gamma`, link)
 }
 
+rcpp_make_tweedie <- function(varp, linkp) {
+    .Call(`_xglm_rcpp_make_tweedie`, varp, linkp)
+}
+
 rcpp_glm_fit <- function(x, y, sample_weights, offset, family, maxit, tol) {
     .Call(`_xglm_rcpp_glm_fit`, x, y, sample_weights, offset, family, maxit, tol)
 }

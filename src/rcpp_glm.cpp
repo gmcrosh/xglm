@@ -27,6 +27,21 @@ std::unique_ptr<Link::LinkFunction> link_from_string(const std::string& link_nam
   Rcpp::stop("Link function not available.");
 }
 
+std::unique_ptr<Link::LinkFunction> link_tweedie(const double linkp) {
+  if (linkp == 0) {
+    std::unique_ptr<Link::LinkFunction> ptr(new Link::Log());
+    return ptr;
+  } else if (linkp == 1) {
+    std::unique_ptr<Link::LinkFunction> ptr(new Link::Identity());
+    return ptr;
+  } else if (linkp == 2) {
+    std::unique_ptr<Link::LinkFunction> ptr(new Link::Inverse());
+    return ptr;
+  }
+  Rcpp::stop("Link function not available.");
+}
+
+
 template<class FamilyClass>
 inline Rcpp::XPtr<FamilyClass> make_family(std::string link) {
   auto l = link_from_string(link);
@@ -53,6 +68,14 @@ Rcpp::XPtr<Family::Poisson> rcpp_make_poisson(std::string link) {
 // [[Rcpp::export]]
 Rcpp::XPtr<Family::Gamma> rcpp_make_gamma(std::string link) {
   return make_family<Family::Gamma>(link);
+}
+
+// [[Rcpp::export]]
+Rcpp::XPtr<Family::Tweedie> rcpp_make_tweedie(double varp, double linkp) {
+  auto l = link_tweedie(linkp);
+  auto* family = new Family::Tweedie(varp, l);
+  Rcpp::XPtr<Family::Tweedie> pointer(family, true);
+  return pointer;
 }
 
 // [[Rcpp::export]]

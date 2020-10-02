@@ -57,4 +57,20 @@ double Gamma::deviance(const arma::colvec& y, const arma::colvec& mu, const arma
   return arma::accu(-2 * weight * (arma::log(logval) - ((y - mu)/mu)));
 }
 
+arma::colvec Tweedie::variance(const arma::colvec& mu) const {
+  return arma::pow(mu, varp);
+}
+arma::colvec Tweedie::initialize(const arma::colvec& y, const arma::colvec& weight) const {
+  arma::colvec ycopy = y;
+  return ycopy.replace(0, 0.1);
+}
+double Tweedie::deviance(const arma::colvec& y, const arma::colvec& mu, const arma::colvec& weight) const {
+  arma::colvec y1 = y;
+  y1.replace(0, 0.1);
+  return arma::accu(
+    2 * weight % ( -1 * ((arma::pow(y, 2 -varp) - arma::pow(mu, 2 -varp)) / (2 -varp)) +
+      (y % (arma::pow(y1, 1 -varp) - arma::pow(mu, 1 -varp)) / (1 -varp))));
+}
+
+
 }

@@ -37,3 +37,15 @@ gamma_family <- function(link = "inverse") {
   link <- match.arg(link, c("inverse", "identity", "log"))
   rcpp_make_gamma(link)
 }
+
+
+#' Tweedie family
+#'
+#' @param varp the variance power
+#' @param linkp the link power
+#'
+#' @export
+tweedie_family <- function(varp, linkp) {
+  #link <- match.arg(linkp, c(0, 1, 2))
+  rcpp_make_tweedie(varp, linkp)
+}

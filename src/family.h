@@ -60,5 +60,16 @@ public:
   Gamma(std::unique_ptr<Link::LinkFunction>& link) : ExponentialFamily(link) {}
 };
 
+class Tweedie : public ExponentialFamily {
+public:
+  double varp;
+  arma::colvec variance(const arma::colvec& mu) const;
+  arma::colvec initialize(const arma::colvec& y, const arma::colvec& weight) const;
+  double deviance(const arma::colvec& y, const arma::colvec& mu, const arma::colvec& weight) const;
+  Tweedie(double v, std::unique_ptr<Link::LinkFunction>& link) : ExponentialFamily(link) {
+    varp = v;
+  }
+};
+
 }
 #endif
