@@ -28,7 +28,6 @@ arma::mat glm_fit(const arma::mat& x,
     dev = family.deviance(y, family.link_inverse(eta), sample_weights);
     if (i > 0) {
       const bool is_converged = (std::abs(dev - devold) / (0.1 + std::abs(dev)) < tol);
-      //Rcpp::Rcout << dev << std::endl;
       if (is_converged) break;
     }
   }

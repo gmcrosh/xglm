@@ -80,6 +80,25 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rcpp_glmnet_fit
+arma::colvec rcpp_glmnet_fit(const arma::mat& x, const arma::colvec& y, const arma::colvec& sample_weights, const arma::colvec& offset, Rcpp::XPtr<Family::ExponentialFamily> family, int maxit, double tol, double lambda, double alpha);
+RcppExport SEXP _xglm_rcpp_glmnet_fit(SEXP xSEXP, SEXP ySEXP, SEXP sample_weightsSEXP, SEXP offsetSEXP, SEXP familySEXP, SEXP maxitSEXP, SEXP tolSEXP, SEXP lambdaSEXP, SEXP alphaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const arma::colvec& >::type y(ySEXP);
+    Rcpp::traits::input_parameter< const arma::colvec& >::type sample_weights(sample_weightsSEXP);
+    Rcpp::traits::input_parameter< const arma::colvec& >::type offset(offsetSEXP);
+    Rcpp::traits::input_parameter< Rcpp::XPtr<Family::ExponentialFamily> >::type family(familySEXP);
+    Rcpp::traits::input_parameter< int >::type maxit(maxitSEXP);
+    Rcpp::traits::input_parameter< double >::type tol(tolSEXP);
+    Rcpp::traits::input_parameter< double >::type lambda(lambdaSEXP);
+    Rcpp::traits::input_parameter< double >::type alpha(alphaSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_glmnet_fit(x, y, sample_weights, offset, family, maxit, tol, lambda, alpha));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_xglm_rcpp_make_gaussian", (DL_FUNC) &_xglm_rcpp_make_gaussian, 1},
@@ -88,6 +107,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_xglm_rcpp_make_gamma", (DL_FUNC) &_xglm_rcpp_make_gamma, 1},
     {"_xglm_rcpp_make_tweedie", (DL_FUNC) &_xglm_rcpp_make_tweedie, 2},
     {"_xglm_rcpp_glm_fit", (DL_FUNC) &_xglm_rcpp_glm_fit, 7},
+    {"_xglm_rcpp_glmnet_fit", (DL_FUNC) &_xglm_rcpp_glmnet_fit, 9},
     {NULL, NULL, 0}
 };
 

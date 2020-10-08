@@ -25,3 +25,7 @@ rcpp_glm_fit <- function(x, y, sample_weights, offset, family, maxit, tol) {
     .Call(`_xglm_rcpp_glm_fit`, x, y, sample_weights, offset, family, maxit, tol)
 }
 
+rcpp_glmnet_fit <- function(x, y, sample_weights, offset, family, maxit, tol, lambda, alpha) {
+    .Call(`_xglm_rcpp_glmnet_fit`, x, y, sample_weights, offset, family, maxit, tol, lambda, alpha)
+}
+

@@ -2,6 +2,7 @@
 #include "family.h"
 #include "linkfunctions.h"
 #include "glm.h"
+#include "glmnet.h"
 
 // [[Rcpp::depends(RcppArmadillo)]]
 std::unique_ptr<Link::LinkFunction> link_from_string(const std::string& link_name) {
@@ -84,4 +85,12 @@ arma::mat rcpp_glm_fit(const arma::mat& x, const arma::colvec& y,
                   Rcpp::XPtr<Family::ExponentialFamily> family,
                   int maxit, double tol) {
   return glm_fit(x, y, sample_weights, offset, *family, maxit, tol);
+}
+
+// [[Rcpp::export]]
+arma::colvec rcpp_glmnet_fit(const arma::mat& x, const arma::colvec& y,
+                       const arma::colvec& sample_weights, const arma::colvec& offset,
+                       Rcpp::XPtr<Family::ExponentialFamily> family,
+                       int maxit, double tol, double lambda, double alpha) {
+  return glmnet_fit(x, y, sample_weights, offset, *family, maxit, tol, lambda, alpha);
 }
