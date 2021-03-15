@@ -7,4 +7,7 @@ personal
 .vscode
 .Rprofile
 man
-tests
+notes.txt
+data
+.gitignore
+.Rbuildignore

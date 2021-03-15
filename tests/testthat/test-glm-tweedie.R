@@ -14,7 +14,7 @@ test_that("Testing tweedie var 2, link 1", {
   y <- mtcars$hp
   res <- as.numeric(glm_fit(X, y, tweedie_family(2.0, 1)))
   expected <- coef(glm.fit(X, y, family = tweedie(2.0, 1)))
-  expect_equivalent(res, expected)
+  expect_equivalent(res, expected, tolerance = 1e-6)
 })
 
 test_that("Testing tweedie var 1.5, link 0", {
