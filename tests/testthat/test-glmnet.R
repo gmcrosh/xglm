@@ -7,7 +7,7 @@ test_that("Testing simple GLMnet", {
   res <- as.numeric(glmnet_fit(x, y, family, lambda = 0.0001))
   expected <- as.numeric(glmnet(
     x, y, binomial(), lambda = 0.0001, standardize=FALSE, intercept=FALSE
-  )$beta@x)
+  )$beta)
   expect_equivalent(res, expected, tolerance = 1e-2)
 })
 
