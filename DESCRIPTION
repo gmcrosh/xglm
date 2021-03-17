@@ -11,6 +11,6 @@ Imports: Rcpp (>= 1.0.5)
 LinkingTo: 
   Rcpp, 
   RcppArmadillo
-Suggests: testthat, GLMsData, statmod, glmnet
+Suggests: testthat, GLMsData, statmod, glmnet(== 4.0-2)
 RoxygenNote: 7.1.1
 Encoding: UTF-8
